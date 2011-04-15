@@ -1,0 +1,4 @@
+h1. jQuery Textsand plugin release notes
+
+h2. v.1
+First version packaged as a jQuery plugin.

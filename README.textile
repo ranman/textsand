@@ -1,0 +1,33 @@
+h1. Textsand
+jQuery plugin for reordering text with a nice shufflign animation.
+
+Project site: "http://ranman.org/textsand":http://ranman.org/textsand.
+
+h2. Demos and docs
+
+None yet
+
+h2. Usage
+
+None yet
+
+h2. Dependencies
+
+* jQuery 1.5+
+* Quicksand "https://github.com/razorjack/quicksand/":https://github.com/razorjack/quicksand/
+* Optional: jQuery Easing (http://gsgd.co.uk/sandbox/jquery/easing/) for additional easing options
+* Optional: jquery-animate-css-rotate-scale.js (www.zachstronaut.com) for additional CSS3 scaling animation; works fine without this plugin (utilizes fade efect instead)
+
+h2. Browser Compatibility
+
+Tested under:
+
+* nothing
+
+h2. Acknowledgements
+
+Only a small portion of this code is mine. The hardwork was done by the gentlemen who created letterin.js and quicksand. I just want to make that very clear.
+
+h2. Licensing
+
+Copyright (c) 2011 "Joseph Randall Hunt":http://www.ranman.org/ released under both "MIT":http://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt and "GPL version 2":http://github.com/jquery/jquery/blob/master/GPL-LICENSE.txt license.
