@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../ranman.github.com/scripts/jquery.min.js"></script>
+<script src="../ranman.github.com/scripts/jquery.easing.js"></script>
+<script src="../ranman.github.com/scripts/jquery-css-transform.js"></script>
+<script src="../ranman.github.com/scripts/jquery-animate-css-rotate-scale.js"></script>
+<script src="../ranman.github.com/scripts/jquery.quicksand.js"></script>
+<script src="jquery.textsand.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#replace').click(function(e) {
+        $('#replace').textsand($('#r'));
+        e.preventDefault();
+    });
+});
+</script>
+<style>
+#r { display: none; }
+</style>
+</head>
+<body>
+<h1 id="replace">Hello my name is Randall</h1>
+<h1 id="r">Wow, my name is Randall too!</h1>
+</body>
+</html>
