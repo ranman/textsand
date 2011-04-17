@@ -8,19 +8,26 @@
 <script src="../ranman.github.com/scripts/jquery.quicksand.js"></script>
 <script src="jquery.textsand.js"></script>
 <script type="text/javascript">
+function cleanDOM(lbl) {
+    var to_clean = lbl.children('span').filter(function() {
+        if($(this).attr('data-id')) {
+            return $(this).attr('data-id').indexOf('txtsnd') != -1;
+        }
+        return false;
+    });
+    to_clean.each(function() {
+        $(this).replaceWith(function() { return this.innerHTML; });
+    });
+} 
 $(document).ready(function() {
     $('#replace').click(function(e) {
         e.preventDefault();
-        $('#replace').textsand($('#r'));
+        $('#replace').textsand($("<h1>This is a test of my plugin, lets see how well it works.</h1>"));
     });
 });
 </script>
-<style>
-#r { display: none; }
-</style>
 </head>
 <body>
 <h1 id="replace">Hello my name is Randall</h1>
-<h1 id="r">Wow, my name is Randall too!</h1>
 </body>
 </html>
