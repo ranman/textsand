@@ -8,26 +8,38 @@
 <script src="../ranman.github.com/scripts/jquery.quicksand.js"></script>
 <script src="jquery.textsand.js"></script>
 <script type="text/javascript">
-function cleanDOM(lbl) {
-    var to_clean = lbl.children('span').filter(function() {
-        if($(this).attr('data-id')) {
-            return $(this).attr('data-id').indexOf('txtsnd') != -1;
-        }
-        return false;
-    });
-    to_clean.each(function() {
-        $(this).replaceWith(function() { return this.innerHTML; });
-    });
-} 
+var API_KEY = 'AIzaSyBIFRz6sfJ1wq7LqykoXeYA3R37Wt5KM9o'
+var API_URL = 'https://www.googleapis.com/language/translate/v2'
+
 $(document).ready(function() {
-    $('#replace').click(function(e) {
+    //Update text to translate
+    function updateText() {
+        $('#textToTranslate').empty().append($('#inputBox').val());
+    }
+    //Update every second incase someone pastes something in.
+    var intervalID = window.setInterval(updateText, 1000);
+    //Update on every keyup event
+    $('#inputBox').bind('keyup', function(e) {
+        updateText();
+    });
+    $('#translateButton').click(function(e) {
+        //Unbind the update every second and keyup 
+        $('#inputBox').unbind('keyup', updateText);
+        window.clearInterval(intervalID);
+        //Get the translation from Google
+        $.getJSON(API_URL+'?key='+API_KEY+'&callback=?&target=de&q='+ escape($('#inputBoxText').html()),
+            function(data) {
+                console.log(data);
+                $('#textToTranslate').textsand($('<h1>'+data.data.translations[0].translatedText+'</h1>'));
+            });
         e.preventDefault();
-        $('#replace').textsand($("<h1>This is a test of my plugin, lets see how well it works.</h1>"));
     });
 });
 </script>
 </head>
 <body>
-<h1 id="replace">Hello my name is Randall</h1>
+<input id="inputBox" type="text"></input>
+<h1 id="textToTranslate"></h1>
+<input id="translateButton" type="button" value="Translate"></input>
 </body>
 </html>
