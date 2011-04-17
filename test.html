@@ -27,7 +27,7 @@ $(document).ready(function() {
         $('#inputBox').unbind('keyup', updateText);
         window.clearInterval(intervalID);
         //Get the translation from Google
-        $.getJSON(API_URL+'?key='+API_KEY+'&callback=?&target=de&q='+ escape($('#inputBoxText').html()),
+        $.getJSON(API_URL+'?key='+API_KEY+'&callback=?&source=en&target=de&q='+ escape($('#textToTranslate').html()),
             function(data) {
                 console.log(data);
                 $('#textToTranslate').textsand($('<h1>'+data.data.translations[0].translatedText+'</h1>'));
