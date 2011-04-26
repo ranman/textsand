@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="../ranman.github.com/scripts/jquery.min.js"></script>
-<script src="../ranman.github.com/scripts/jquery.easing.js"></script>
-<script src="../ranman.github.com/scripts/jquery-css-transform.js"></script>
-<script src="../ranman.github.com/scripts/jquery-animate-css-rotate-scale.js"></script>
-<script src="../ranman.github.com/scripts/jquery.quicksand.js"></script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/jquery.easing.js"></script>
+<script src="scripts/jquery-css-transform.js"></script>
+<script src="scripts/jquery-animate-css-rotate-scale.js"></script>
+<script src="scripts/jquery.quicksand.js"></script>
 <script src="jquery.textsand.js"></script>
 <script type="text/javascript">
 var API_KEY = 'AIzaSyBIFRz6sfJ1wq7LqykoXeYA3R37Wt5KM9o'
@@ -14,23 +14,37 @@ var API_URL = 'https://www.googleapis.com/language/translate/v2'
 $(document).ready(function() {
     //Update text to translate
     function updateText() {
-        $('#textToTranslate').empty().append($('#inputBox').val());
+        $('#textToTranslate').empty().append(
+            //Clean up the input
+            $('#inputBox').val()
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            );
     }
+    
     //Update every second incase someone pastes something in.
     var intervalID = window.setInterval(updateText, 1000);
     //Update on every keyup event
     $('#inputBox').bind('keyup', function(e) {
         updateText();
     });
+    
     $('#translateButton').click(function(e) {
+        var source = "en";
+        var target = "de";
+        var q = escape($('#textToTranslate').html());
+
         //Unbind the update every second and keyup 
         $('#inputBox').unbind('keyup', updateText);
         window.clearInterval(intervalID);
+
         //Get the translation from Google
-        $.getJSON(API_URL+'?key='+API_KEY+'&callback=?&source=en&target=de&q='+ escape($('#textToTranslate').html()),
+        $.getJSON(API_URL+'?key='+API_KEY+'&callback=?&source='
+                +source+'&target='+target+'&q='+q,
             function(data) {
-                console.log(data);
-                $('#textToTranslate').textsand($('<h1>'+data.data.translations[0].translatedText+'</h1>'));
+                $('#textToTranslate')
+                .textsand($('<h1>'+data.data.translations[0].translatedText+'</h1>'));
             });
         e.preventDefault();
     });
@@ -41,5 +55,6 @@ $(document).ready(function() {
 <input id="inputBox" type="text"></input>
 <h1 id="textToTranslate"></h1>
 <input id="translateButton" type="button" value="Translate"></input>
+<input 
 </body>
 </html>
