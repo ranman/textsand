@@ -1,5 +1,5 @@
 h1. Textsand
-jQuery plugin for reordering text with a nice shufflign animation.
+jQuery plugin for reordering text with a nice shuffling animation.
 
 Project site: "http://ranman.org/textsand":http://ranman.org/textsand.
 
